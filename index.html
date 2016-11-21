@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <title>JS Device</title>
+    <style>
+    @media screen {
+        body:before { content: 'desktop'; display: none; }
+    }
+    @media screen and (max-width: 768px) {
+        body:before { content: 'tablet'; }
+    }
+    @media screen and (max-width: 500px) {
+        body:before { content: 'mobile'; }
+    }
+    </style>
+</head>
+<body>
+    <p>Resize screen and watch the log below.</p>
+    <p><strong>Log:</strong></p>
+    <ul class="log"></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="src/js-device.js"></script>
+    <script>
+    var log = $('.log');
+    $(window).on('device_change', function(){
+
+        $('<li>Device changed to ' + get_device() + '</li>').appendTo(log);
+    });
+    </script>
+</body>
+</html>
